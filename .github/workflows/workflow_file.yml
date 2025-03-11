@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.get_version.outputs.value }}
+      job-output: ${{ steps.test_gh-out.outputs.job-output }}
     steps:
       - uses: actions/checkout@v4
       - run: |
@@ -22,10 +22,10 @@ jobs:
            echo "$MATLAB_OUTPUT" >> $GITHUB_OUTPUT
            echo 'EOF' >> $GITHUB_OUTPUT
            ls -larth $GITHUB_OUTPUT
-        id: get_version   
+        id: test_gh-out   
        
   deploy:
     needs: build  # Explicitly wait for build job
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ needs.build.outputs.version }}"
+      - run: echo "${{ needs.test_gh-out.outputs.job-output }}"
