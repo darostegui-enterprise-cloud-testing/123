@@ -15,6 +15,7 @@ jobs:
     outputs:
       job-output: ${{ steps.test_gh-out.outputs.job-output }}
     steps:
+      - id: get_data
       - uses: actions/checkout@v4
       - run: |
            ls -larth outputs.txt
@@ -24,4 +25,3 @@ jobs:
            echo 'EOF' >> $GITHUB_OUTPUT
            echo 'Test' 
            ls -larth $GITHUB_OUTPUT
-        id: test_gh-out
