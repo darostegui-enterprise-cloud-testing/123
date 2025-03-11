@@ -9,13 +9,12 @@ on:
   workflow_dispatch:
   
 jobs:
-  print-context:
+  build:
     runs-on: ubuntu-latest
-
     outputs:
-      job-output: ${{ steps.test_gh-out.outputs.job-output }}
+      version: ${{ steps.get_version.outputs.value }}
     steps:
-      - id: get_data
+      - id: get_version
       - uses: actions/checkout@v4
       - run: |
            ls -larth outputs.txt
@@ -23,5 +22,4 @@ jobs:
            echo 'job-output<<EOF' >> $GITHUB_OUTPUT
            echo "$MATLAB_OUTPUT" >> $GITHUB_OUTPUT
            echo 'EOF' >> $GITHUB_OUTPUT
-           echo 'Test' 
            ls -larth $GITHUB_OUTPUT
