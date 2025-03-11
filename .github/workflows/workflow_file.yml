@@ -19,9 +19,11 @@ jobs:
     steps:
       - id: step1
         run: echo "test=hello" >> "$GITHUB_OUTPUT"
+      - id: checkout
+        uses: actions/checkout@v4
       - id: step2
         run: |
-           echo 'job-output<<EOF' >> $GITHUB_OUTPUT
+           echo 'test=job-output<<EOF' >> $GITHUB_OUTPUT
            echo 'EOF' >> $GITHUB_OUTPUT
            ls -larth $GITHUB_OUTPUT
   job2:
