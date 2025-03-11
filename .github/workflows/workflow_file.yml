@@ -15,11 +15,12 @@ jobs:
     outputs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
+
     steps:
       - id: step1
         run: echo "test=hello" >> "$GITHUB_OUTPUT"
       - id: step2
-      - run: |
+        run: |
            echo 'job-output<<EOF' >> $GITHUB_OUTPUT
            echo 'EOF' >> $GITHUB_OUTPUT
            ls -larth $GITHUB_OUTPUT
