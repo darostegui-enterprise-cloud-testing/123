@@ -19,7 +19,14 @@ jobs:
       - id: step1
         run: echo "test=hello" >> "$GITHUB_OUTPUT"
       - id: step2
-        run: echo "test=world" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+      - run: |
+           ls -larth outputs
+           MATLAB_OUTPUT=$(cat --squeeze-blank outputs)
+           echo 'job-output<<EOF' >> $GITHUB_OUTPUT
+           echo "$MATLAB_OUTPUT" >> $GITHUB_OUTPUT
+           echo 'EOF' >> $GITHUB_OUTPUT
+           ls -larth $GITHUB_OUTPUT
   job2:
     runs-on: ubuntu-latest
     needs: job1
