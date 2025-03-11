@@ -16,7 +16,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-         echo "value=1.0.0" >> "$GITHUB_OUTPUT"
+           ls -larth outputs
+           MATLAB_OUTPUT=$(cat --squeeze-blank outputs)
+           echo 'job-output<<EOF' >> $GITHUB_OUTPUT
+           echo "$MATLAB_OUTPUT" >> $GITHUB_OUTPUT
+           echo 'EOF' >> $GITHUB_OUTPUT
+           ls -larth $GITHUB_OUTPUT
         id: get_version
 
   deploy:
