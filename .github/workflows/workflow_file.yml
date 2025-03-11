@@ -34,5 +34,5 @@ jobs:
     steps:
       - env:
           OUTPUT1: ${{needs.job1.outputs.output1}}
-          OUTPUT2: ${{needs.job1.outputs.output2}}
-        run: ls -larth $OUTPUT2
+          #OUTPUT2: ${{needs.job1.outputs.output2}}
+        run: ls -larth ${{needs.job1.outputs.output2}}
