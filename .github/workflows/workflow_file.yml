@@ -1,0 +1,21 @@
+name: test-output-size
+
+on:
+  push: 
+    paths:
+      - .github/workflows/test-output-size.yml
+jobs:
+  print-context:
+    runs-on: rise
+    outputs:
+      job-output: ${{ steps.test_gh-out.outputs.job-output }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+           ls -larth outputs
+           MATLAB_OUTPUT=$(cat --squeeze-blank outputs)
+           echo 'job-output<<EOF' >> $GITHUB_OUTPUT
+           echo "$MATLAB_OUTPUT" >> $GITHUB_OUTPUT
+           echo 'EOF' >> $GITHUB_OUTPUT
+           ls -larth $GITHUB_OUTPUT
+        id: test_gh-out
