@@ -25,7 +25,7 @@ jobs:
         run: |
            ls -larth outputs.txt
            MATLAB_OUTPUT=$(cat --squeeze-blank outputs.txt)      
-           echo 'job-output<<EOF' >> "$GITHUB_OUTPUT"
+           echo 'test=job-output<<EOF' >> "$GITHUB_OUTPUT"
            echo "$MATLAB_OUTPUT" >> "$GITHUB_OUTPUT"
            echo 'EOF' >> "$GITHUB_OUTPUT"
            ls -larth $GITHUB_OUTPUT
