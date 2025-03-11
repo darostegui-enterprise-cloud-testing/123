@@ -15,10 +15,12 @@ jobs:
       version: ${{ steps.get_version.outputs.value }}
     steps:
       - id: get_version
-        run: echo "value=1.0.0" >> "$GITHUB_OUTPUT"
+        run: |
+           ls -larth outputs
+           MATLAB_OUTPUT=$(cat --squeeze-blank outputs)
+           echo 'job-output<<EOF' >> $GITHUB_OUTPUT
+           echo "$MATLAB_OUTPUT" >> $GITHUB_OUTPUT
+           echo 'EOF' >> $GITHUB_OUTPUT
+           ls -larth $GITHUB_OUTPUT
+       
 
-  deploy:
-    needs: build  # Explicitly wait for build job
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Deploying ${{ needs.build.outputs.version }}"
