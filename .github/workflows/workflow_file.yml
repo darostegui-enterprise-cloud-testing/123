@@ -12,20 +12,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      job-output: ${{ steps.test_gh-out.outputs.job-output }}
+      version: ${{ steps.get_version.outputs.value }}
     steps:
-      - uses: actions/checkout@v4
-      - run: |
-           ls -larth outputs.txt
-           MATLAB_OUTPUT=$(cat --squeeze-blank outputs.txt)
-           echo 'job-output<<EOF' >> $GITHUB_OUTPUT
-           #echo "$MATLAB_OUTPUT" >> $GITHUB_OUTPUT
-           echo 'EOF' >> $GITHUB_OUTPUT
-           ls -larth $GITHUB_OUTPUT
-        id: test_gh-out   
-       
+      - id: get_version
+        run: echo "value=1.0.0" >> "$GITHUB_OUTPUT"
+
   deploy:
     needs: build  # Explicitly wait for build job
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ needs.test_gh-out.outputs.job-output }}"
+      - run: echo "Deploying ${{ needs.build.outputs.version }}"
