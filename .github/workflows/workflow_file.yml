@@ -16,8 +16,8 @@ jobs:
     steps:
       - id: get_version
         run: |
-           ls -larth outputs
-           MATLAB_OUTPUT=$(cat --squeeze-blank outputs)
+           ls -larth outputs.txt
+           MATLAB_OUTPUT=$(cat --squeeze-blank outputs.txt)
            echo 'job-output<<EOF' >> $GITHUB_OUTPUT
            echo "$MATLAB_OUTPUT" >> $GITHUB_OUTPUT
            echo 'EOF' >> $GITHUB_OUTPUT
