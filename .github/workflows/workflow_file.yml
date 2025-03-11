@@ -22,13 +22,7 @@ jobs:
       - id: checkout
         uses: actions/checkout@v4
       - id: step2
-        run: |
-         {
-           echo 'test<<EOF'
-           cat --squeeze-blank outputs.txt
-           echo
-           echo EOF
-         } >> "$GITHUB_OUTPUT"
+        run:  echo "test=$(cat outputs.txt)" >> $GITHUB_OUTPUT
   job2:
     runs-on: ubuntu-latest
     needs: job1
