@@ -1,9 +1,9 @@
 name: test-output-size
 
 on:
-  push: 
-    paths:
-      - .github/workflows/test-output-size.yml
+ # push: 
+ #   paths:
+ #     - .github/workflows/test-output-size.yml
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
