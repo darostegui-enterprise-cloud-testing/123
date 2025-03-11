@@ -10,7 +10,8 @@ on:
   
 jobs:
   print-context:
-    runs-on: rise
+    runs-on: ubuntu-latest
+
     outputs:
       job-output: ${{ steps.test_gh-out.outputs.job-output }}
     steps:
