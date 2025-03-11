@@ -19,7 +19,7 @@ jobs:
       - id: step1
         run: echo "test=hello" >> "$GITHUB_OUTPUT"
       - id: step2
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
       - run: |
            ls -larth outputs
            MATLAB_OUTPUT=$(cat --squeeze-blank outputs)
