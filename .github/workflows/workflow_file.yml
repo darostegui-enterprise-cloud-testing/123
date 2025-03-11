@@ -25,7 +25,7 @@ jobs:
         run: |
          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
          echo "test<<$EOF" >> $GITHUB_OUTPUT
-         echo "data: $(cat outputs.txt)" >> $GITHUB_OUTPUT
+         echo "data: $(cat File-lnKqT.txt)" >> $GITHUB_OUTPUT
          echo "$EOF" >> $GITHUB_OUTPUT
 
   job2:
