@@ -24,4 +24,10 @@ jobs:
            ls -larth $GITHUB_OUTPUT
         id: get_version   
        
-
+  deploy:
+    needs: build  # Explicitly wait for build job
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+           echo ls -larth ${{ needs.build.outputs.version }}
+      
